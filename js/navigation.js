@@ -82,6 +82,38 @@ var cords = [100][100];         //Array für Koordinaten
 
   }
 
+  function findShortestToilet(start, gender)
+  {
+    var rueckgabe = [];
+    var kleinsteEntfernung = Infinity;
+    var naechstesKlo;
+    var toilettenpunkte = [];
+    switch (gender) 
+    {
+      case 1:
+        toilettenpunkte = toilet_m;
+        break;
+      case 2:
+        toilettenpunkte = toilet_w;
+        break;
+      case 3:
+        toilettenpunkte = toilet_h;
+        break;
+    }
+
+    for(var i=0; i<9; i++)
+    {
+      rueckgabe = getNodes(start, toilettenpunkte[i]);
+      if(rueckgabe.dist<kleinsteEntfernung)
+      {
+        kleinsteEntfernung = rueckgabe.dist;
+        naechstesKlo = toilettenpunkte[i];
+      }
+    }  
+    console.log("Kürzeste Klo: " + naechstesKlo + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesKlo));
+
+  }
+
 
 
 
@@ -180,15 +212,17 @@ var cords = [100][100];         //Array für Koordinaten
 
   //Array Kreuzunggspunkte für Zielpunkte:
   var essen = [7,15,22,36,39,51,58,61,70]; //Essbuden
-  var toilet_m = []; //Toiletten Men
-  var toilet_w = []; //Toiletten Women
-  var toilet_h = []; //Toiletten Handicapped
-  var exits = [8,23,77,63]; //Ausgänge
+  var toilet_m = [4,12,18,89,86,31,44,52,55,64,73]; //Toiletten Men
+  var toilet_w = [4,12,21,27,31,44,79,67,73]; //Toiletten Women
+  var toilet_h = [28,32,35,40,43,47]; //Toiletten Handicapped
+  var acces_h = [29,33,37,41,45,48]; //Eingänge Handicapped
+  var exits = [8,23,68,77,80,92]; //Ausgänge
+  var fanshop = [78, 83, 91]; //Fanshops
   var start;
   var gender;
   var items = 
     [
-      ["A", "B",  "C",  "D",  "E1", "E2", "J",  "K1", "K2", "K3", "K4", "K5", "L",  "M",  "N",  "O",  "P",  "R",  "S",  "T"],
+      ["A", "B",  "C",  "D",  "E", "F", "J",  "K1", "K2", "K3", "K4", "K5", "L",  "M",  "N",  "O",  "P",  "R",  "S",  "T"],
       [16,  13,   10,   5,    1,    75,   71,   65,   62,   59,   56,   53,   48,   45,   41,   37,   33,   29,   25,   19],
       [2,   2,    2,    2,    2,    5,    5,    5,    5,    5,    5,    5,    4,    4,    4,    4,    4,    4,    3,    3]
     ];

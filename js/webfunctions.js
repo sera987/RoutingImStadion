@@ -10,6 +10,7 @@ function submitPosition(){
     // document.getElementById("navbar").style.display = 'inline-block';
     // alert("test");
     findShortestMeal(position);
+    findShortestToilet(position, 1);
 }
 
 
