@@ -79,7 +79,7 @@ var cords = [100][100];         //Array für Koordinaten
       }
     }  
     console.log("Kürzeste Bude: " + naechstesEssen + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesEssen));
-
+    return getNodes(start, naechstesEssen);
   }
 
   function findShortestToilet(start, gender)
@@ -111,11 +111,66 @@ var cords = [100][100];         //Array für Koordinaten
       }
     }  
     console.log("Kürzeste Klo: " + naechstesKlo + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesKlo));
-
+    return getNodes(start, naechstesKlo);
   }
 
+  function findShortestAccess_H(start)
+  {
+    var rueckgabe = [];
+    var kleinsteEntfernung = Infinity;
+    var naechstesAccessH;
 
+    for(var i=0; i<9; i++)
+    {
+      rueckgabe = getNodes(start, acces_h[i]);
+      if(rueckgabe.dist<kleinsteEntfernung)
+      {
+        kleinsteEntfernung = rueckgabe.dist;
+        naechstesAccessH = acces_h[i];
+      }
+    }  
+    console.log("Kürzeste Bude: " + naechstesAccessH + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesAccessH));
+    return getNodes(start, naechstesAccessH);
+  }
 
+  function findShortestExit(start)
+  {
+    var rueckgabe = [];
+    var kleinsteEntfernung = Infinity;
+    var naechstesExit;
+
+    for(var i=0; i<9; i++)
+    {
+      rueckgabe = getNodes(start, exits[i]);
+      if(rueckgabe.dist<kleinsteEntfernung)
+      {
+        kleinsteEntfernung = rueckgabe.dist;
+        naechstesExit = exits[i];
+      }
+    }  
+    console.log("Kürzeste Bude: " + naechstesExit + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesExit));
+    return getNodes(start, naechstesExit);
+  }
+
+  function findShortestFanshop(start)
+  {
+    var rueckgabe = [];
+    var kleinsteEntfernung = Infinity;
+    var naechstesFanshop;
+
+    for(var i=0; i<9; i++)
+    {
+      rueckgabe = getNodes(start, fanshop[i]);
+      if(rueckgabe.dist<kleinsteEntfernung)
+      {
+        kleinsteEntfernung = rueckgabe.dist;
+        naechstesFanshop = fanshop[i];
+      }
+    }  
+    console.log("Kürzeste Bude: " + naechstesFanshop + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesFanshop));
+    return getNodes(start, naechstesFanshop);
+
+  }
 
   //Variables
   var graph = {};
