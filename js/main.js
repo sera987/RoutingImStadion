@@ -50,6 +50,7 @@ var cords = [100][100];         //Array für Koordinaten
 
   function getNodes(start, ziel)
   {
+      position = start;
     var solutions = solve(graph, start);
 
     console.log("From '"+start+"' to '" + ziel + "'");
@@ -176,7 +177,7 @@ var cords = [100][100];         //Array für Koordinaten
   var graph = {};
   
   var graph = {
-    1: {2: 9},        //console.log(graph[1][2]); --> 9                
+    1: {2: 9},                            
     2: {1: 9, 4: 8.6},                      
     4: {2: 8.6, 6: 13.1},                     
     5: {6: 9},                            
@@ -285,15 +286,43 @@ var cords = [100][100];         //Array für Koordinaten
 
 
 
-  //(Main)
-  /*for(var id in layout) {
-    if(!graph[id])
-      graph[id] = {};
-    layout[id].forEach(function(aid) {
-      graph[id][aid] = 1;
-      if(!graph[aid])
-        graph[aid] = {};
-      graph[aid][id] = 1;
-    });
-  }*/
+//   //(Main)
+//   for(var id in layout) {
+//     if(!graph[id])
+//       graph[id] = {};
+//     layout[id].forEach(function(aid) {
+//       graph[id][aid] = 1;
+//       if(!graph[aid])
+//         graph[aid] = {};
+//       graph[aid][id] = 1;
+//     });
+//   }
   
+  function drawLine(parent_id, start_knoten, knoten_inp){
+    var knoten_tmp = knoten_inp + "";            
+    var knoten = knoten_tmp.split(",");
+    const pathBBox = document.getElementById(start_knoten).getBBox();
+    var curr = [pathBBox.x + pathBBox.width/2, pathBBox.y + pathBBox.height/2];
+    var path = "M" + curr[0] + " " + curr[1] + ", ";
+    for (let i = 0; i < knoten.length; i++) {
+        const pathBBox = document.getElementById(knoten[i]).getBBox();
+        var curr = [pathBBox.x + pathBBox.width/2, pathBBox.y + pathBBox.height/2];
+        path += "L" + curr[0] + " " + curr[1] + ", ";
+    }
+
+    svg = document.getElementById(parent_id);
+    // alert(svg);
+    newpath = document.createElementNS("http://www.w3.org/2000/svg","path");  
+    newpath.setAttributeNS(null, "id", "pathIdD");  
+    newpath.setAttributeNS(null, "d", path);  
+    newpath.setAttributeNS(null, "stroke", "var(--sgd-red)"); 
+    newpath.setAttributeNS(null, "stroke-width", 2);  
+    newpath.setAttributeNS(null, "opacity", 1);  
+    newpath.setAttributeNS(null, "fill", "none");
+    try {
+        document.getElementById("pathIdD").remove();
+    } catch (error) {
+    }
+
+    svg.appendChild(newpath);
+  }

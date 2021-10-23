@@ -1,9 +1,31 @@
 :root{
     /* color-scheme: light; */
-    --body-bg-color: transparent;
-    --inner-body-bg-color: rgb(112, 112, 112);
+    --body-bg-color: rgb(226, 226, 226);
+    --inner-body-bg-color: rgb(44, 44, 44);
 
     --font-color: black;
+
+    --sgd-yellow: #f3ac26;
+    --sgd-red: #93000e;
+    --status: rgba(0, 0, 0, 0);
+    
+}
+.navbar{
+    display:inline;
+}
+
+#wctype{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    transform: translate(-50% -50%);
+    width: 50%;
+    display: none;
+    padding: 3%;
+    border-radius: 1vh;
+    background-color: var(--inner-body-bg-color);
+    text-align: center;
+    z-index: 0;
 }
 
 body{
@@ -15,9 +37,9 @@ body{
 }
 
 .inner-body{
-    position: relative;
+    /* position: relative; */
     background-color: var(--inner-body-bg-color);
-    padding: 3%;
+    /* padding: 1%; */
     border-radius: 1vh;
 }
 
@@ -44,18 +66,47 @@ h1{
     border-radius: 1vh;
     background-color: var(--inner-body-bg-color);
     text-align: center;
+    z-index: 1;
+
 }
-/* .map{
-    display: none;
-} */
-#map{
-    display: none;
-    position: relative;
+.map svg{
     width: 100%;
     height: auto;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+}
+
+#wc{
+    display: block;
+    width: 24%;
+    height: auto;
+    display: inline;
 
 }
 
-.navbar{
-    display: none;
+#food{
+    display: block;
+    width: 24%;
+    height: auto;
+    display: inline;
+
 }
+
+#merch{
+    display: block;
+    width: 24%;
+    height: auto;
+    display: inline;
+
+}
+
+#b_access{
+    display: block;
+    width: 24%;
+    height: auto;
+    display: inline;
+
+}
+
