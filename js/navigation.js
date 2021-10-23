@@ -63,7 +63,22 @@ var cords = [100][100];         //Array für Koordinaten
     //}
   }
 
-
+  function quicksort(array) {
+    if (array.length <= 1) {
+      return array;
+    }
+  
+    var pivot = array[0];
+    
+    var left = []; 
+    var right = [];
+  
+    for (var i = 1; i < array.length; i++) {
+      array[i] < pivot ? left.push(array[i]) : right.push(array[i]);
+    }
+  
+    return quicksort(left).concat(pivot, quicksort(right));
+  };
 
   function findShortestMeal(start)
   {
@@ -83,6 +98,7 @@ var cords = [100][100];         //Array für Koordinaten
         console.log("temp "+temp);
     }
     console.log("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
+    alert("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
   }
 
 
@@ -183,4 +199,9 @@ var cords = [100][100];         //Array für Koordinaten
       graph[aid][id] = 1;
     });
   }
-  
+  var items = 
+  [
+    ["A", "B",  "C",  "D",  "E1", "E2", "J",  "K1", "K2", "K3", "K4", "K5", "L",  "M",  "N",  "O",  "P",  "R",  "S",  "T"],
+    [16,  13,   10,   5,    1,    75,   71,   65,   62,   59,   56,   53,   48,   45,   41,   37,   33,   29,   25,   19],
+    [2,   2,    2,    2,    2,    5,    5,    5,    5,    5,    5,    5,    4,    4,    4,    4,    4,    4,    3,    3]
+  ];
