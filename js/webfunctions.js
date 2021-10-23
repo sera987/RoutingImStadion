@@ -7,7 +7,8 @@ function submitPosition(){
     document.getElementById("start_page").style.display = 'none';
     position = document.getElementById("position_inp").value + "";
     document.getElementById("map").style.display = 'inline-block';
-    
+    // document.getElementById("navbar").style.display = 'inline-block';
+    // alert("test");
     findShortestMeal(position);
 }
 

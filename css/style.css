@@ -45,11 +45,17 @@ h1{
     background-color: var(--inner-body-bg-color);
     text-align: center;
 }
-
+/* .map{
+    display: none;
+} */
 #map{
     display: none;
     position: relative;
     width: 100%;
     height: auto;
 
+}
+
+.navbar{
+    display: none;
 }
