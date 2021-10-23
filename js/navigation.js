@@ -45,81 +45,44 @@ var cords = [100][100];         //Array für Koordinaten
       //extend parent's cost
       solutions[nearest].dist = dist;
     }
-    console.log("bliblablub",solutions);
     return solutions;
   }
 
-  function getDist(start, s) //give dinstance
+  function getNodes(start, ziel)
   {
     var solutions = solve(graph, start);
-  
-    console.log("From "+start+" to "+s+":");
-    //display solutions
-    for(s in solutions) {
-      if(!solutions[s]) continue;
-      console.log(solutions[s].join(", ") + " - Dist: " + solutions[s].dist);
-      console.log(" -> " + s + ": [" + solutions[s].join(", ") + "]   (dist:" + solutions[s].dist + ")");
-      return solutions[s].dist;
-    }
-  }
 
-  function getNodes(start, s)
-  {
-    var solutions = solve(graph, start);
-  
-    console.log("From "+start+" to "+s+":");
+    console.log("From '"+start+"' to '" + ziel + "'");
     //display solutions
-    for(s in solutions) 
+   /* for(var i in solutions) 
     {
-      if(!solutions[s]) continue;
-      var path = solutions[s].join(", ");
+      if(!solutions[i]) continue;
+      console.log(" -> " + i + ": [" + solutions[i].join(", ") + "]   (dist:" + solutions[i].dist + ")");
     }
-      return path;
+    */
+   return solutions[ziel];
   }
-
 
   function findShortestMeal(start)
   {
-      var results = [];
-      var temp = Infinity;
-      var temp2;
-    
-    for(var i = 0; i<9; i++)
+    var rueckgabe = [];
+    var kleinsteEntfernung = Infinity;
+    var naechstesEssen;
+
+    for(var i=0; i<9; i++)
     {
-        results[i] = getDist(start, essen[i]);
-        console.log("Ziel: "+essen[i]+" Distanz: "+results[i]);
-        if(results[i]<temp)
-        {
-            temp = results[i];
-            temp2 = essen[i];
-        }
-        console.log("temp "+temp);
-    }
-    console.log("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
-    console.log("Route: " + getNodes(start, temp2));
-    alert("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
+      rueckgabe = getNodes(start, essen[i]);
+      if(rueckgabe.dist<kleinsteEntfernung)
+      {
+        kleinsteEntfernung = rueckgabe.dist;
+        naechstesEssen = essen[i];
+      }
+    }  
+    console.log("Kürzeste Bude: " + naechstesEssen + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesEssen));
+
   }
 
-  function findShortestToilet(start, gender) //unready
-  {
-      var results = [];
-      var temp = Infinity;
-      var temp2;
-    
-    for(var i = 0; i<9; i++)
-    {
-        results[i] = getnodes(start, essen[i]);
-        console.log("Ziel: "+essen[i]+"Distanz: "+results[i]);
-        if(results[i]<temp)
-        {
-            temp = results[i];
-            temp2 = essen[i];
-        }
-        console.log("temp "+temp);
-    }
-    console.log("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
-    alert("Kürzeste Bude: "+temp2+" Entfernung: "+temp);
-  }
+
 
 
   //Variables
