@@ -17,6 +17,7 @@ document.getElementsByClassName("wctype").style.display = 'none'
 }
 
 function submitPosition(){
+    closeNode(1);
     document.getElementById("popup").style.display = 'none';
     position = document.getElementById("position_inp").value + "";
     document.getElementById("position_inp").value = "";
@@ -26,16 +27,16 @@ function submitPosition(){
     // alert("test");
     switch (target) {
         case "merch":
-            drawLine('lines', position, findShortestFanshop(position));
+            drawLine('lines', position, findNearestSpot(4, position));
           break;
         case "wc":
-            drawLine('lines', position, findShortestToilet(position));
+            drawLine('lines', position, findNearestToilet(position, gender));
           break;
         case "access":
-            drawLine('lines', positon, findShortestAccess_H(position));
+            drawLine('lines', positon, findNearestSpot(2, position));
           break;
-        default:
-          drawLine('lines', position, findShortestMeal(position));
+        default:    //Meal
+          drawLine('lines', position, findNearestSpot(1, position));
           break;
       }
     // findShortestMeal(position);

@@ -4,6 +4,8 @@ var cords = [100][100];         //Array für Koordinaten
 
 
   function solve(graph, s) {
+    
+   
     var solutions = {};
     solutions[s] = [];
     solutions[s].dist = 0;
@@ -20,19 +22,23 @@ var cords = [100][100];         //Array für Koordinaten
         var ndist = solutions[n].dist;
         var adj = graph[n];
         //for each of its adjacent nodes...
+   
         for(var a in adj) {
           //without a solution already...
           if(solutions[a])
             continue;
           //choose nearest node with lowest *total* cost
           var d = adj[a] + ndist;
+          
           if(d < dist) {
             //reference parent
             parent = solutions[n];
             nearest = a;
             dist = d;
           }
+        
         }
+     
       }
       
       //no more solutions
@@ -45,7 +51,10 @@ var cords = [100][100];         //Array für Koordinaten
       //extend parent's cost
       solutions[nearest].dist = dist;
     }
+  
     return solutions;
+ 
+
   }
 
   function getNodes(start, ziel)
@@ -65,6 +74,7 @@ var cords = [100][100];         //Array für Koordinaten
 
   function findShortestMeal(start)
   {
+   
     var rueckgabe = [];
     var kleinsteEntfernung = Infinity;
     var naechstesEssen;
@@ -80,10 +90,12 @@ var cords = [100][100];         //Array für Koordinaten
     }  
     console.log("Kürzeste Bude: " + naechstesEssen + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesEssen));
     return getNodes(start, naechstesEssen);
+ 
   }
 
   function findShortestToilet(start, gender)
   {
+  
     var rueckgabe = [];
     var kleinsteEntfernung = Infinity;
     var naechstesKlo;
@@ -109,13 +121,17 @@ var cords = [100][100];         //Array für Koordinaten
         kleinsteEntfernung = rueckgabe.dist;
         naechstesKlo = toilettenpunkte[i];
       }
+     
     }  
+  
     console.log("Kürzeste Klo: " + naechstesKlo + " Entfernung: " + kleinsteEntfernung + " Route: " + getNodes(start, naechstesKlo));
     return getNodes(start, naechstesKlo);
+
   }
 
   function findShortestAccess_H(start)
   {
+  
     var rueckgabe = [];
     var kleinsteEntfernung = Infinity;
     var naechstesAccessH;
