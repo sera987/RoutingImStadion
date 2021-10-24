@@ -1,0 +1,75 @@
+:root{
+    /* color-scheme: light; */
+    --body-bg-color: rgb(226, 226, 226);
+    --inner-body-bg-color: rgb(44, 44, 44);
+
+    --font-color: black;
+
+    --sgd-yellow: #f3ac26;
+    --sgd-red: #93000e;
+    --status: rgba(0, 0, 0, 0);
+    
+}
+body{
+    background-color: var(--body-bg-color);
+    font-family:Arial, Helvetica, sans-serif;
+    color: var(--font-color);
+    padding: 1%;
+    font-size: 3vh;
+}
+
+.left{
+    width: 40%;
+    float:left; /* add this */
+    border-right: 1px solid black;
+
+}
+h1{
+    text-align: right;
+}
+
+#sgd-logo{
+    width: 60%;
+    height: auto;
+}
+.icons{
+    margin: 0 auto;
+    width: 80%;
+    height: auto;
+}
+
+table{
+    text-align: center;
+}
+
+.right{
+    /* border: 1px solid green; */
+    overflow: hidden;
+}
+
+.auswahl{
+    text-align: center;
+}
+svg{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+}
+
+
+label {
+    /* font-weight: 200; */
+  }
+.choices {
+    display: none;
+  }
+  input[type=radio]:checked + label {
+    font-weight: bold;
+  }
+
+  fieldset{
+      border: none;
+  }

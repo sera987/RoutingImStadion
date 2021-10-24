@@ -1,8 +1,3 @@
-var knotscords = [77][77];         //Array für Knoten
-var cords = [100][100];         //Array für Koordinaten
-
-
-
   function solve(graph, s) {
     var solutions = {};
     solutions[s] = [];
@@ -53,7 +48,7 @@ var cords = [100][100];         //Array für Koordinaten
       position = start;
     var solutions = solve(graph, start);
 
-    console.log("From '"+start+"' to '" + ziel + "'");
+    console.log("Analyzed path from '"+start+"' to '" + ziel + "' ...");
     //display solutions
    /* for(var i in solutions) 
     {
@@ -85,19 +80,20 @@ var cords = [100][100];         //Array für Koordinaten
 */
   function findNearestToilet(start, gender)
   {
+    console.log("Finding Toilet for " + gender + " ...");
     var rueckgabe = [];
     var kleinsteEntfernung = Infinity;
     var naechstesKlo;
     var toilettenpunkte = [];
     switch (gender) 
     {
-      case 1:
+      case "mann":
         toilettenpunkte = toilet_m;
         break;
-      case 2:
+      case "frau":
         toilettenpunkte = toilet_w;
         break;
-      case 3:
+      case "behindert":
         toilettenpunkte = toilet_h;
         break;
     }
@@ -173,6 +169,13 @@ var cords = [100][100];         //Array für Koordinaten
 
   }
 */
+  function findPathToBlock(block)
+  {
+    console.log("Finding Path to Block " + block);
+    var pos = bloecke.push(block);
+    return getNodes(bloecke_exit_nodenr[pos], bloecke_nodenr[pos]);
+  }
+
   function findNearestSpot(spot, start)     //Spot: 1-meal, 2-Access_h, 3-exits, 4-fanshop
   {
     var rueckgabe = [];
@@ -429,16 +432,17 @@ var cords = [100][100];         //Array für Koordinaten
   var fanshop = [78, 83, 91]; //Fanshops
   var start;
   var gender;
-  var items = 
-    [
-      ["A", "B",  "C",  "D",  "E", "F", "J",  "K1", "K2", "K3", "K4", "K5", "L",  "M",  "N",  "O",  "P",  "R",  "S",  "T"],
-      [16,  13,   10,   5,    1,    75,   71,   65,   62,   59,   56,   53,   48,   45,   41,   37,   33,   29,   25,   19],
-      [2,   2,    2,    2,    2,    5,    5,    5,    5,    5,    5,    5,    4,    4,    4,    4,    4,    4,    3,    3]
-    ];
+  var bloecke =              ["A", "B",  "C",  "D",  "E", "F", "J",  "K1", "K2", "K3", "K4", "K5", "L",  "M",  "N",  "O",  "P",  "R",  "S",  "T"];
+  var bloecke_nodenr =       [16,  13,   10,   5,    1,    75,   71,   65,   62,   59,   56,   53,   48,   45,   41,   37,   33,   29,   25,   19];
+  var bloecke_exit =         [2,   2,    2,    2,    2,    5,    5,    5,    5,    5,    5,    5,    4,    4,    4,    4,    4,    4,    3,    3];
+  var bloecke_exit_nodenr =  [92,  92,   92,   8,    8,    80,   80,   68,   68,   68,   68,   68,   77,   77,   77,   77,   77,   77,   23,   23]; 
 
   function drawLine(parent_id, start_knoten, knoten_inp){
-    var knoten_tmp = knoten_inp + "";            
+    start_knoten = start_knoten + "";
+    var knoten_tmp = knoten_inp + "";
     var knoten = knoten_tmp.split(",");
+    // alert(start_knoten);
+    // alert(document.getElementById(start_knoten));
     const pathBBox = document.getElementById(start_knoten).getBBox();
     var curr = [pathBBox.x + pathBBox.width/2, pathBBox.y + pathBBox.height/2];
     var path = "M" + curr[0] + " " + curr[1] + ", ";
@@ -486,18 +490,19 @@ function insertIcon(parent_id, kat, knoten){
   
   switch (kat) {
       case 1:
-          svgimg.setAttributeNS(null, "href", "img/food_color.svg");
+        svgimg.setAttributeNS(null, "href", "img/food_color.svg");
         break;
       case 2:
         svgimg.setAttributeNS(null, "href", "img/rollstuhl_color.svg");
         break;
       case 3:
-          svgimg.setAttributeNS(null, "href", "img/food_color.svg");
-        wegpunkte = exits;
+        svgimg.setAttributeNS(null, "href", "img/food_color.svg");
         break;
       case 4:
-          svgimg.setAttributeNS(null, "href", "img/merch_color.svg");
-        wegpunkte = fanshop;
+        svgimg.setAttributeNS(null, "href", "img/merch_color.svg");
+        break;
+      case 5:
+        svgimg.setAttributeNS(null, "href", "img/toilets_color.svg");
         break;
     }
   

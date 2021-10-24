@@ -1,33 +1,59 @@
 var target = "";
-var wctype;
+var wctype = "mann";
 
 function settypeF(){
-        wctype = "frau";
-    document.getElementsByClassName("wctype").style.display = 'none'
+    wctype = "frau";
+    document.getElementsByClassName("wctype").style.display = 'none';
+    console.log("Geschlecht set to: " + wctype);
 }
 
 function settypeM(){
     wctype = "mann";
-document.getElementsByClassName("wctype").style.display = 'none'
+    document.getElementsByClassName("wctype").style.display = 'none';
+    console.log("Geschlecht set to: " + wctype);
 }
 
 function settypeB(){
     wctype = "behindert";
-document.getElementsByClassName("wctype").style.display = 'none'
+    document.getElementsByClassName("wctype").style.display = 'none';
+    console.log("Geschlecht set to: " + wctype);
+}
+
+function getRadioValue() {
+    var ele = document.getElementsByName('Auswahl');
+      
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        var tmp = ele[i].id;
+        // alert(tmp);
+
+    }
+    return tmp;
 }
 
 function submitPosition(){
     closeNode(1);
-    document.getElementById("popup").style.display = 'none';
-    position = document.getElementById("position_inp").value + "";
-    document.getElementById("position_inp").value = "";
+
+    tmp = getRadioValue();
+
+    for(i=0; i < bloecke.length; i++){
+        if(tmp == bloecke[i]){
+            var position = bloecke_nodenr[i];
+        }
+    }
+
+    // alert(position);
+
+
+
     switch (target) {
         case "merch":
             drawLine('lines', position, findNearestSpot(4, position));
             insertIcon('g1012', 4, findNearestSpot(4, position));
-          break;
+            break;
         case "wc":
-            drawLine('lines', position, findNearestToilet(position, gender));
+            drawLine('lines', position, findNearestToilet(position, wctype));
+            insertIcon('g1012', 5, findNearestToilet(position, wctype));
           break;
         case "access":
             drawLine('lines', positon, findNearestSpot(2, position));
@@ -43,21 +69,22 @@ function submitPosition(){
 
 function startWC(){
     target = "wc";
-    document.getElementById("wctype").style.display = 'block';
-    document.getElementById("popup").style.display = 'block';
-    document.getElementById("route").style.display = 'none';
+    submitPosition();
+    // document.getElementById("wctype").style.display = 'block';
+    // document.getElementById("popup").style.display = 'block';
 }
 function startFood(){
     target = "food";
-    document.getElementById("popup").style.display = 'block';
+    submitPosition();
+    // document.getElementById("popup").style.display = 'block';
 }
 function startAccess(){
     target = "access";
-    document.getElementById("popup").style.display = 'block';
-    document.getElementById("route").style.display = 'none';
+    submitPosition();
+    // document.getElementById("popup").style.display = 'block';
 }
 function startMerch(){
     target = "merch";
-    document.getElementById("popup").style.display = 'block';
-    document.getElementById("route").style.display = 'none';
+    submitPosition();
+    // document.getElementById("popup").style.display = 'block';
 }
