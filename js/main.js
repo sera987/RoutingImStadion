@@ -449,7 +449,6 @@ var cords = [100][100];         //Array für Koordinaten
     }
 
     svg = document.getElementById(parent_id);
-    // alert(svg);
     newpath = document.createElementNS("http://www.w3.org/2000/svg","path");  
     newpath.setAttributeNS(null, "id", "pathIdD");  
     newpath.setAttributeNS(null, "d", path);  
@@ -464,3 +463,48 @@ var cords = [100][100];         //Array für Koordinaten
 
     svg.appendChild(newpath);
   }
+
+
+  
+function insertIcon(parent_id, kat, knoten){
+  var knoten_tmp = knoten + "";     
+  var tmp = knoten_tmp.split(",");
+  var lastknoten = tmp[tmp.length - 1];
+
+  const pathBBox = document.getElementById(lastknoten).getBBox();
+  var x = pathBBox.x - 5;
+  var y = pathBBox.y - 5;
+
+  var svg = document.getElementById(parent_id);
+
+  var svgimg = document.createElementNS('http://www.w3.org/2000/svg','image');
+  svgimg.setAttributeNS(null, "id", "icon");
+  svgimg.setAttributeNS(null, "height", "10");
+  svgimg.setAttributeNS(null, "width", "10");
+  svgimg.setAttributeNS(null, "x", x);
+  svgimg.setAttributeNS(null, "y", y);
+  
+  switch (kat) {
+      case 1:
+          svgimg.setAttributeNS(null, "href", "img/food_color.svg");
+        break;
+      case 2:
+        svgimg.setAttributeNS(null, "href", "img/rollstuhl_color.svg");
+        break;
+      case 3:
+          svgimg.setAttributeNS(null, "href", "img/food_color.svg");
+        wegpunkte = exits;
+        break;
+      case 4:
+          svgimg.setAttributeNS(null, "href", "img/merch_color.svg");
+        wegpunkte = fanshop;
+        break;
+    }
+  
+  try {
+    document.getElementById("icon").remove();
+  } catch (error) {
+  }
+
+  svg.appendChild(svgimg);
+}
